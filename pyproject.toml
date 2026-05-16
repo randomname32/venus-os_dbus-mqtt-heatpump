@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "venus-os_dbus-mqtt-heatpump"
+version = "0.1.0"
+description = "VenusOS driver: forwards heat pump data received via MQTT to the dbus"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "paho-mqtt",
+]
