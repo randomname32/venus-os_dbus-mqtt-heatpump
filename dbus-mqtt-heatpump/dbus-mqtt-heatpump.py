@@ -309,7 +309,11 @@ def main():
     DBusGMainLoop(set_as_default=True)
 
     # MQTT setup
-    client = mqtt.Client("MqttHeatpump_" + get_vrm_portal_id() + "_" + str(config["DEFAULT"]["device_instance"]))
+    client_id = "MqttHeatpump_" + get_vrm_portal_id() + "_" + str(config["DEFAULT"]["device_instance"])
+    try:
+        client = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION1, client_id=client_id)
+    except AttributeError:
+        client = mqtt.Client(client_id)
     client.on_disconnect = on_disconnect
     client.on_connect = on_connect
     client.on_message = on_message
